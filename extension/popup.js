@@ -90,7 +90,7 @@ function renderError(message) {
   summary.innerHTML =
     '<span class="badge error">读取失败</span>' +
     `<p class="summary-line">${escapeText(message)}</p>` +
-    '<p class="meta">确认已经运行过 install.ps1 注册本机程序。</p>';
+    '<p class="meta">确认已经在解压目录中双击「注册.cmd」注册本机程序；移动目录后需要重新注册。</p>';
   types.innerHTML = '';
   devices.innerHTML = '';
   events.innerHTML = '';

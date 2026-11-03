@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "查看本机 Edge 的同步是否成功、有哪些设备连过，以及最近一次上传的结果。",
   "minimum_chrome_version": "120",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnDrtFFKteJlo7UknH8fRwpe8AxOhrGXcS7iGU7QM9/mveOtIzYzde0ETJE+qF+x9+dDKJjadxcNPIqxTPnGzLVba8RzbPwDgBD+5KhRgkRbOAy5P6WYebvPsF/HCsxv3r/W5Ss4nAMEuh4A6NVDNyR8lpeZFykuP1Y6ITasTuDJm9BzayuA5pIgd/foa7mYYYGMRPAkoVEXd+2A/fuzY0P5KPwQw9VvE0RfYJxHjV2Ry7Foow4zOiB972KCk61VD+NJia4xFMi185wYroX8ea27EeVIbjNttxI8MYvaNjdQCgnvLdlv6kgKNVMB7CeRLReSIPxlNSeoIsd3ePNbEsQIDAQAB",
   "permissions": ["nativeMessaging"],
   "background": {
     "service_worker": "background.js"

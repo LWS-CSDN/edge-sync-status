@@ -3,3 +3,4 @@ __pycache__/
 .idea/
 host/com.edge.syncstatus.installed.json
 host/run_host.cmd
+dist/
