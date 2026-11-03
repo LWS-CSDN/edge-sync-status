@@ -1,0 +1,122 @@
+:root {
+  color-scheme: light dark;
+  --ok: #0a7d32;
+  --stuck: #b3261e;
+  --idle: #8a5a00;
+  --line: rgba(127, 127, 127, .35);
+}
+
+body {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: min(720px, 100%);
+  padding: 12px;
+  font: 13px/1.5 "Segoe UI", sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 15px;
+}
+
+h2 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: .7;
+}
+
+button {
+  font: inherit;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.muted {
+  margin: 0;
+  opacity: .7;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.badge.ok { background: var(--ok); }
+.badge.stuck { background: var(--stuck); }
+.badge.idle, .badge.unknown { background: var(--idle); }
+.badge.error { background: var(--stuck); }
+
+.summary-line {
+  margin: 6px 0 0;
+}
+
+.meta {
+  margin: 2px 0 0;
+  opacity: .7;
+  font-size: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 3px 4px;
+  vertical-align: top;
+  border-top: 1px solid var(--line);
+}
+
+tr:first-child td {
+  border-top: none;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.stale {
+  color: var(--stuck);
+}
+
+.time {
+  white-space: nowrap;
+  opacity: .75;
+  font-variant-numeric: tabular-nums;
+}
+
+.result.Success, .result.SYNC_SERVER_OK {
+  color: var(--ok);
+}
+
+.foot {
+  margin: 4px 0 0;
+  text-align: right;
+  font-size: 12px;
+}
+
+.foot a {
+  color: inherit;
+}

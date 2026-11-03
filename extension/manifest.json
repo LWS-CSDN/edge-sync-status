@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Edge 同步状态",
+  "version": "1.0.0",
+  "description": "查看本机 Edge 的同步是否成功、有哪些设备连过，以及最近一次上传的结果。",
+  "minimum_chrome_version": "120",
+  "permissions": ["nativeMessaging"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Edge 同步状态"
+  },
+  "icons": {
+    "128": "icon128.png"
+  }
+}

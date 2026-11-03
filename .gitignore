@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.idea/
+host/com.edge.syncstatus.installed.json
+host/run_host.cmd

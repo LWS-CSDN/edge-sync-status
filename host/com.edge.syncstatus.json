@@ -1,0 +1,7 @@
+{
+  "name": "com.edge.syncstatus",
+  "description": "Reads Edge sync diagnostics for the sync status extension",
+  "path": "syncstatus-host.exe",
+  "type": "stdio",
+  "allowed_origins": ["chrome-extension://igpfblfeihflinfkcclpdjfhfmcaajde/"]
+}
