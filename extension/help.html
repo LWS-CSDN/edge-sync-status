@@ -30,9 +30,9 @@
 
     <h2>怎么启动</h2>
     <ol>
-      <li>从 <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.3">v1.0.3 Release</a> 下载 <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/edge-sync-status-v1.0.3-windows-x64.zip">edge-sync-status-v1.0.3-windows-x64.zip</a>，解压到准备长期保留的位置。</li>
+      <li>从 <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.4">v1.0.4 Release</a> 下载 <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.4/edge-sync-status-v1.0.4-windows-x64.zip">edge-sync-status-v1.0.4-windows-x64.zip</a>，解压到准备长期保留的位置。</li>
       <li>打开 <code>edge://extensions/</code>，打开「开发人员模式」，选「加载解压缩的扩展」，指向解压出来的 <code>extension</code> 文件夹。</li>
-      <li>双击解压目录里的 <code>register.cmd</code>。看到 <code>Registered com.edge.syncstatus</code> 后，点工具栏图标启动。</li>
+      <li>双击解压目录里的 <code>install.cmd</code>。看到 <code>Registered com.edge.syncstatus</code> 后，点工具栏图标启动。</li>
     </ol>
 
     <p>工具栏没有图标时，在 Edge「扩展」菜单中找到「Edge 同步状态」并固定。日常使用只需点击图标，点击「刷新」重新读取。英文界面下这个按钮显示为 Refresh。读取程序由 Edge 按需启动，无需单独运行 EXE 或启动服务器。</p>
@@ -77,9 +77,9 @@
     <h2>读取失败怎么办</h2>
     <p>「读取失败」表示扩展没能启动本机的读取程序，按顺序查：</p>
     <ol>
-      <li>确认运行过解压目录里的 <code>register.cmd</code>，窗口里出现过「Registered com.edge.syncstatus」。</li>
+      <li>确认运行过解压目录里的 <code>install.cmd</code>，窗口里出现过「Registered com.edge.syncstatus」。</li>
       <li>确认 <code>host</code> 文件夹里有 <code>syncstatus-host.exe</code>，没有被杀毒软件隔离。</li>
-      <li>把整个目录挪了位置之后，要重新运行一次 <code>register.cmd</code>。</li>
+      <li>把整个目录挪了位置之后，要重新运行一次 <code>install.cmd</code>。</li>
     </ol>
     <p>安装和卸载的完整步骤见上一级目录的 <code>README.md</code>，也可以看 <a href="https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md">在线说明</a>。卸载时双击上一级目录的 <code>uninstall.cmd</code>。</p>
   </div>
@@ -92,9 +92,9 @@
 
     <h2>How to start</h2>
     <ol>
-      <li>Download <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/edge-sync-status-v1.0.3-windows-x64.zip">edge-sync-status-v1.0.3-windows-x64.zip</a> from the <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.3">v1.0.3 release</a> and extract it to a location you intend to keep.</li>
+      <li>Download <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.4/edge-sync-status-v1.0.4-windows-x64.zip">edge-sync-status-v1.0.4-windows-x64.zip</a> from the <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.4">v1.0.4 release</a> and extract it to a location you intend to keep.</li>
       <li>Open <code>edge://extensions/</code>, turn on Developer mode, choose "Load unpacked", and select the extracted <code>extension</code> folder.</li>
-      <li>Double-click <code>register.cmd</code> in the extracted folder. After <code>Registered com.edge.syncstatus</code> appears, click the toolbar icon to start it.</li>
+      <li>Double-click <code>install.cmd</code> in the extracted folder. After <code>Registered com.edge.syncstatus</code> appears, click the toolbar icon to start it.</li>
     </ol>
 
     <p>If the icon is missing, find "Edge 同步状态" in Edge's Extensions menu and pin it. Click the icon to open the page and Refresh to read again. Edge starts the reader on demand; do not launch the EXE or a separate server.</p>
@@ -139,9 +139,9 @@
     <h2>If reading fails</h2>
     <p>"Read failed" means the extension could not start the local reader. Check these in order:</p>
     <ol>
-      <li>Confirm that <code>register.cmd</code> was run from the extracted folder and showed "Registered com.edge.syncstatus".</li>
+      <li>Confirm that <code>install.cmd</code> was run from the extracted folder and showed "Registered com.edge.syncstatus".</li>
       <li>Confirm that <code>syncstatus-host.exe</code> is in the <code>host</code> folder and was not quarantined by antivirus software.</li>
-      <li>After moving the whole folder, run <code>register.cmd</code> again.</li>
+      <li>After moving the whole folder, run <code>install.cmd</code> again.</li>
     </ol>
     <p>The complete install and uninstall steps are in <code>README.md</code> one level up, and in the <a href="https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md">online guide</a>. To uninstall, double-click <code>uninstall.cmd</code> one level up.</p>
   </div>

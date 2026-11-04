@@ -1,5 +1,35 @@
 # 更新记录 / Changelog
 
+## [1.0.4] - 2026-11-04
+
+### 中文
+
+安装与卸载统一为一对入口：**install.cmd / uninstall.cmd**。
+
+- 将注册入口改名为 `install.cmd`，与 `uninstall.cmd` 对应。
+- 删除已弃用的 `install.ps1`，同时移除功能重复的 `register.ps1` 和 `uninstall.ps1`。仓库和新安装包只保留两个 CMD 入口。
+- 同步中英文界面提示、帮助文档和打包清单。
+
+下载 [edge-sync-status-v1.0.4-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.4/edge-sync-status-v1.0.4-windows-x64.zip)，完整解压，在 `edge://extensions/` 打开开发人员模式、加载包内 `extension` 文件夹，再双击 **install.cmd**。点击扩展图标打开状态页，顶部可切换中英文。卸载时先从 Edge 删除扩展，再运行 **uninstall.cmd**。
+
+升级时关闭状态页，覆盖原安装目录，在 Edge 中重新加载扩展，再运行 `install.cmd`。覆盖解压不会自动删除旧文件，旧版残留的 `register.cmd` 和三个 PowerShell 脚本可以手动删除。读取程序和扩展 ID 不变，仍不需要 Python 或管理员权限。
+
+[SHA-256 校验文件](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.4/SHA256SUMS.txt) · [完整中英文说明](https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md)
+
+### English
+
+Installation and uninstallation now use a matching pair: **install.cmd / uninstall.cmd**.
+
+- Rename the registration entry point to `install.cmd`, paired with `uninstall.cmd`.
+- Remove the deprecated `install.ps1` and the redundant `register.ps1` and `uninstall.ps1`. The repository and new package contain only the two CMD entry points.
+- Update interface messages, bilingual help, and the release package file list.
+
+Download [edge-sync-status-v1.0.4-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.4/edge-sync-status-v1.0.4-windows-x64.zip) and extract it completely. At `edge://extensions/`, enable Developer mode and load the included `extension` folder, then double-click **install.cmd**. Open the status page from the extension icon and use the language button at the top. To uninstall, remove the extension from Edge, then run **uninstall.cmd**.
+
+To upgrade, close the status tab, copy the new files over the installation folder, reload the extension in Edge, and run `install.cmd`. Extracting over an old installation does not remove old files: you can delete the leftover `register.cmd` and the three PowerShell scripts manually. The native reader and extension ID are unchanged. Python and administrator rights are not required.
+
+[SHA-256 checksums](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.4/SHA256SUMS.txt) · [Full bilingual guide](https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md)
+
 ## [1.0.3] - 2026-11-04
 
 ### 中文

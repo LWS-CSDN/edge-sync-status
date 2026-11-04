@@ -74,7 +74,7 @@ test('language switch also updates errors and loading text without another host 
   errorPage.element('language-toggle').click();
   assert.match(errorPage.element('summary').innerHTML, /Read failed/);
   assert.match(errorPage.element('summary').innerHTML, /Native host unavailable/);
-  assert.match(errorPage.element('summary').innerHTML, /register\.cmd/);
+  assert.match(errorPage.element('summary').innerHTML, /install\.cmd/);
   assert.doesNotMatch(errorPage.element('summary').innerHTML, /确认|读取失败/);
   const loading = openPage({ uiLanguage: 'zh-CN' });
   loading.element('language-toggle').click();

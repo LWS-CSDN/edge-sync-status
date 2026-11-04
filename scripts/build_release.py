@@ -25,9 +25,7 @@ PACKAGE_FILES = (
     "host/syncstatus-host.exe",
     "host/com.edge.syncstatus.json",
     "README.md",
-    "register.ps1",
-    "uninstall.ps1",
-    "register.cmd",
+    "install.cmd",
     "uninstall.cmd",
 )
 

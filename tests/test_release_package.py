@@ -26,9 +26,7 @@ PACKAGE_FILES = (
     "host/syncstatus-host.exe",
     "host/com.edge.syncstatus.json",
     "README.md",
-    "register.ps1",
-    "uninstall.ps1",
-    "register.cmd",
+    "install.cmd",
     "uninstall.cmd",
 )
 
@@ -75,7 +73,8 @@ class ReleasePackageTest(unittest.TestCase):
 
     def test_zip_contains_only_required_files_and_preserves_their_bytes(self):
         # A recursive copy would leak these source/development files into the ZIP.
-        for relative in ("install.ps1", "host/native_host.py", "tests/test_private.py",
+        for relative in ("install.ps1", "register.ps1", "uninstall.ps1", "register.cmd",
+                         "host/native_host.py", "tests/test_private.py",
                          ".git/config", ".idea/workspace.xml", "extension/debug.txt"):
             path = self.source / relative
             path.parent.mkdir(parents=True, exist_ok=True)
