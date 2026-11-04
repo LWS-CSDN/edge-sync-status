@@ -1,5 +1,39 @@
 # 更新记录 / Changelog
 
+## [1.0.3] - 2026-11-04
+
+### 中文
+
+注册和卸载入口统一使用英文文件名，中文和英文界面使用相同的命令：
+
+- **register.cmd**：注册本机读取程序，首次安装或移动目录后运行一次。
+- **uninstall.cmd**：移除本机读取程序的当前用户登记。
+- 更新主界面提示、中英文帮助、README 和安装包清单，避免文件名与说明不一致。
+
+下载 [edge-sync-status-v1.0.3-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/edge-sync-status-v1.0.3-windows-x64.zip)，解压后在 `edge://extensions/` 打开开发人员模式并加载 `extension` 文件夹，再双击 `register.cmd`。点击工具栏图标打开状态页，右上角可切换中英文；无需单独启动 EXE 或服务器。
+
+旧版升级：关闭状态页，将新包覆盖到原安装目录，在 `edge://extensions/` 重新加载扩展，再运行 `register.cmd`。若改用新目录，先从 Edge 删除旧扩展，再加载并注册新目录。卸载时先从 Edge 删除扩展，再运行 `uninstall.cmd`。
+
+系统要求和数据读取行为不变：Windows 10/11 x64、Microsoft Edge，当前只支持 Default 配置文件，不需要 Python。注册仍仅写当前用户登记，不需要管理员权限。
+
+[校验文件](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/SHA256SUMS.txt) · [完整说明](https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md)
+
+### English
+
+The registration and uninstall entry points now use English filenames in both interface languages:
+
+- **register.cmd** registers the local reader. Run it once after installation or after moving the installation folder.
+- **uninstall.cmd** removes the current user's native-host registration.
+- Interface messages, bilingual help, the README, and package contents now use these same filenames.
+
+Download [edge-sync-status-v1.0.3-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/edge-sync-status-v1.0.3-windows-x64.zip) and extract it. At `edge://extensions/`, enable Developer mode and load the included `extension` folder, then double-click `register.cmd`. Open the status page from the toolbar icon and use the language switch at the top right. Edge starts the reader automatically; no separate EXE or server needs to be launched.
+
+To upgrade, close the status tab, copy the new files over the original installation, reload the extension at `edge://extensions/`, and run `register.cmd`. If using a new directory, remove the old extension from Edge first, then load and register the new location. To uninstall, remove the extension from Edge, then run `uninstall.cmd`.
+
+Requirements and reader behavior are unchanged: Windows 10/11 x64, Microsoft Edge, and the Default profile. Python and administrator rights are not required. Registration still affects only the current user.
+
+[Checksums](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/SHA256SUMS.txt) · [Full guide](https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md)
+
 ## [1.0.2] - 2026-11-04
 
 ### 中文

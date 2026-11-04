@@ -4,7 +4,7 @@
 
 A local Edge extension that checks whether sync on this computer actually succeeded.
 
-**最新版本 Latest release:** [v1.0.2](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.2)
+**最新版本 Latest release:** [v1.0.3](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.3)
 
 ## 系统要求 / Requirements
 
@@ -25,21 +25,30 @@ Edge's settings page only shows whether sync is switched on. It does not show wh
 
 ## 下载与启动 / Download and start
 
-1. 从 [v1.0.2 Release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.2) 下载 [edge-sync-status-v1.0.2-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/edge-sync-status-v1.0.2-windows-x64.zip)。完整包包含扩展、读取程序和注册／卸载入口；GitHub 的 `Source code` 附件供开发使用。Download [edge-sync-status-v1.0.2-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/edge-sync-status-v1.0.2-windows-x64.zip) from the [v1.0.2 release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.2). The full package contains the extension, reader, and register/unregister entries. GitHub's `Source code` attachments are for development.
-2. 同页提供 [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/SHA256SUMS.txt)。如需校验，在 PowerShell 中运行下面的命令，与校验文件中的值比较。The same page provides [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/SHA256SUMS.txt). To verify the download, run the command below in PowerShell and compare it with the value in that file.
+1. 从 [v1.0.3 Release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.3) 下载 [edge-sync-status-v1.0.3-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/edge-sync-status-v1.0.3-windows-x64.zip)。完整包包含扩展、读取程序和注册／卸载入口；GitHub 的 `Source code` 附件供开发使用。Download [edge-sync-status-v1.0.3-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/edge-sync-status-v1.0.3-windows-x64.zip) from the [v1.0.3 release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.3). The full package contains the extension, reader, and register/unregister entries. GitHub's `Source code` attachments are for development.
+2. 同页提供 [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/SHA256SUMS.txt)。如需校验，在 PowerShell 中运行下面的命令，与校验文件中的值比较。The same page provides [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.3/SHA256SUMS.txt). To verify the download, run the command below in PowerShell and compare it with the value in that file.
 
 ```powershell
-Get-FileHash .\edge-sync-status-v1.0.2-windows-x64.zip -Algorithm SHA256
+Get-FileHash .\edge-sync-status-v1.0.3-windows-x64.zip -Algorithm SHA256
 ```
 
 3. 将 ZIP 解压到准备长期保留的位置。不要在压缩包里直接运行。Extract the ZIP to a location you intend to keep. Do not run it directly from inside the archive.
 4. 打开 `edge://extensions/`，打开「开发人员模式」，选「加载解压缩的扩展」，指向解压出来的 `extension` 文件夹。Open `edge://extensions/`, turn on Developer mode, choose "Load unpacked", and select the extracted `extension` folder.
-5. 双击解压目录里的 `注册.cmd`。它只在当前用户的注册表里写一条记录，告诉 Edge 去哪里找读取程序，不需要管理员权限。看到 `Registered com.edge.syncstatus` 就成功了。Double-click `注册.cmd` in the extracted folder. It writes one current-user registry entry telling Edge where to find the reader and does not need administrator rights. `Registered com.edge.syncstatus` means it succeeded.
+5. 双击解压目录里的 `register.cmd`。它只在当前用户的注册表里写一条记录，告诉 Edge 去哪里找读取程序，不需要管理员权限。看到 `Registered com.edge.syncstatus` 就成功了。Double-click `register.cmd` in the extracted folder. It writes one current-user registry entry telling Edge where to find the reader and does not need administrator rights. `Registered com.edge.syncstatus` means it succeeded.
 6. 点工具栏里的图标启动。它会打开一个标签页；已经打开过就切到那一页。Click the toolbar icon to start it. It opens a tab, or switches to that tab if it is already open.
 
 如果工具栏没有图标，点击 Edge 的「扩展」按钮，找到「Edge 同步状态」，将它固定到工具栏。以后打开 Edge 后点击此图标即可使用；点击「刷新」重新读取记录。读取程序由 Edge 按需启动，无需手动运行 `syncstatus-host.exe`，也没有需要另外启动的服务器。
 
 If the icon is missing, open Edge's Extensions menu, find "Edge 同步状态", and pin it to the toolbar. On later visits, click the icon and use the "刷新" (Refresh) button to read the records again. Edge starts the reader on demand; you do not need to run `syncstatus-host.exe` or start a separate server.
+
+两个入口统一使用英文文件名，中文和英文界面都使用同一套文件：
+
+Both interface languages use the same English-named entry points:
+
+| 文件 / File | 用途 / Purpose |
+|---|---|
+| `register.cmd` | 注册本机读取程序；首次安装或移动目录后运行 / Register the local reader after installation or moving the folder |
+| `uninstall.cmd` | 移除本机读取程序的当前用户登记 / Remove the current user's native-host registration |
 
 ## 切换界面语言 / Switch the interface language
 
@@ -51,11 +60,11 @@ Click **English / 中文** at the top right of the status page to switch the ent
 
 The help page uses the same saved language and has its own switch. Open status and help pages update together. Device names, timestamps, original diagnostic codes, and actual script filenames are preserved.
 
-## 从旧版升级 / Upgrade from v1.0.0 or v1.0.1
+## 从旧版升级 / Upgrade from earlier releases
 
-关闭扩展的状态页，将新包内的文件覆盖到原安装目录，保持 `extension`、`host` 等相对位置不变。在 `edge://extensions/` 找到此扩展并点击重新加载，随后再次运行 `注册.cmd`。扩展 ID 保持不变。如果改用新目录，先在 Edge 删除旧扩展，再从新目录加载并注册。
+关闭扩展的状态页，将新包内的文件覆盖到原安装目录，保持 `extension`、`host` 等相对位置不变。在 `edge://extensions/` 找到此扩展并点击重新加载，随后再次运行 `register.cmd`。扩展 ID 保持不变。如果改用新目录，先在 Edge 删除旧扩展，再从新目录加载并注册。
 
-Close the status tab and copy the new package contents over the original installation, keeping the `extension` and `host` directory structure. Reload the extension at `edge://extensions/`, then run `注册.cmd` again. The extension ID is unchanged. If using a new directory, remove the old extension from Edge before loading and registering it from the new location.
+Close the status tab and copy the new package contents over the original installation, keeping the `extension` and `host` directory structure. Reload the extension at `edge://extensions/`, then run `register.cmd` again. The extension ID is unchanged. If using a new directory, remove the old extension from Edge before loading and registering it from the new location.
 
 ## 状态怎么看 / How to read the status
 
@@ -67,7 +76,7 @@ Close the status tab and copy the new package contents over the original install
 | 同步卡住 Possibly stuck | 日志出现新客户端初始化且没有成功上传，可能仍在初始化，需进一步确认 A new-client initialization appears without a successful upload; it may still be initializing and needs confirmation |
 | 最近无上传 No recent upload | 有过同步记录，但最近没有上传 Sync records exist, but there is no recent upload |
 | 没有记录 No records | 没找到同步日志 No sync log was found |
-| 读取失败 Read failed | 没连上本机读取程序，先确认运行过 `注册.cmd` The local reader did not connect; confirm that `注册.cmd` has been run |
+| 读取失败 Read failed | 没连上本机读取程序，先确认运行过 `register.cmd` The local reader did not connect; confirm that `register.cmd` has been run |
 
 中间一栏按数据类型列出最近一次成功上传的时间，收藏夹、历史记录、设置各自独立。设备列表里，超过 14 天没有出现的设备会标红；同一台电脑、同一个版本的重复登记会合并成一行。
 
@@ -98,7 +107,7 @@ They communicate through Edge's native messaging. `host\com.edge.syncstatus.json
 ## 卸载 / Uninstall
 
 1. 在 `edge://extensions/` 里删除扩展。Remove the extension at `edge://extensions/`.
-2. 双击 `卸载.cmd`，清除注册表里的登记。Double-click `卸载.cmd` to remove the registry entry.
+2. 双击 `uninstall.cmd`，清除注册表里的登记。Double-click `uninstall.cmd` to remove the registry entry.
 
 ## 开发与发布 / Development and releases
 
@@ -108,7 +117,7 @@ They communicate through Edge's native messaging. `host\com.edge.syncstatus.json
 python -I -B host/test_sync_status.py
 python -I -B -m unittest discover -s tests -v
 node --test tests/*.test.js
-python -I -B scripts/build_release.py --tag v1.0.2
+python -I -B scripts/build_release.py --tag v1.0.3
 ```
 
 打包输出到 `dist/`。发布新版本时，同时更新扩展的 `version` 和 `CHANGELOG.md`；提交并推送后，推送匹配的 `v<version>` 标签，GitHub Actions 会运行验证、打包并创建附有 ZIP 和校验文件的 Release。也可手动触发工作流，仅验证和生成构件。

@@ -27,8 +27,8 @@ PACKAGE_FILES = (
     "README.md",
     "register.ps1",
     "uninstall.ps1",
-    "注册.cmd",
-    "卸载.cmd",
+    "register.cmd",
+    "uninstall.cmd",
 )
 
 

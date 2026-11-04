@@ -37,7 +37,7 @@ function checkRegistryCommand(source, operation) {
 }
 
 test('registration uses HKCU reg.exe after checking both payload files', () => {
-  const source = read('注册.cmd');
+  const source = read('register.cmd');
   checkRegistryCommand(source, 'add');
   assert.match(source, /set "manifestPath=%~dp0host\\com\.edge\.syncstatus\.json"/i);
   assert.match(source, /set "hostPath=%~dp0host\\syncstatus-host\.exe"/i);
@@ -51,7 +51,7 @@ test('registration uses HKCU reg.exe after checking both payload files', () => {
 });
 
 test('unregistration deletes only the current-user host and preserves errors', () => {
-  const source = read('卸载.cmd');
+  const source = read('uninstall.cmd');
   checkRegistryCommand(source, 'delete');
   assert.match(source, /com\.edge\.syncstatus" \/f/i);
 });
@@ -60,6 +60,6 @@ test('native connection failure points users to the CMD registration entry', () 
   const page = openPage({ uiLanguage: 'zh-CN', connectionError: 'Native host unavailable' });
   const html = page.element('summary').innerHTML;
   assert.match(html, /Native host unavailable/);
-  assert.match(html, /注册\.cmd/);
+  assert.match(html, /register\.cmd/);
   assert.doesNotMatch(html, /install\.ps1/);
 });
