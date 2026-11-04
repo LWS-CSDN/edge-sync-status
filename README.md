@@ -4,7 +4,7 @@
 
 A local Edge extension that checks whether sync on this computer actually succeeded.
 
-**最新版本 Latest release:** [v1.0.1](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.1)
+**最新版本 Latest release:** [v1.0.2](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.2)
 
 ## 系统要求 / Requirements
 
@@ -25,11 +25,11 @@ Edge's settings page only shows whether sync is switched on. It does not show wh
 
 ## 下载与启动 / Download and start
 
-1. 从 [v1.0.1 Release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.1) 下载 [edge-sync-status-v1.0.1-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.1/edge-sync-status-v1.0.1-windows-x64.zip)。完整包包含扩展、读取程序和注册／卸载入口；GitHub 的 `Source code` 附件供开发使用。Download [edge-sync-status-v1.0.1-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.1/edge-sync-status-v1.0.1-windows-x64.zip) from the [v1.0.1 release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.1). The full package contains the extension, reader, and register/unregister entries. GitHub's `Source code` attachments are for development.
-2. 同页提供 [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.1/SHA256SUMS.txt)。如需校验，在 PowerShell 中运行下面的命令，与校验文件中的值比较。The same page provides [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.1/SHA256SUMS.txt). To verify the download, run the command below in PowerShell and compare it with the value in that file.
+1. 从 [v1.0.2 Release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.2) 下载 [edge-sync-status-v1.0.2-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/edge-sync-status-v1.0.2-windows-x64.zip)。完整包包含扩展、读取程序和注册／卸载入口；GitHub 的 `Source code` 附件供开发使用。Download [edge-sync-status-v1.0.2-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/edge-sync-status-v1.0.2-windows-x64.zip) from the [v1.0.2 release](https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.2). The full package contains the extension, reader, and register/unregister entries. GitHub's `Source code` attachments are for development.
+2. 同页提供 [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/SHA256SUMS.txt)。如需校验，在 PowerShell 中运行下面的命令，与校验文件中的值比较。The same page provides [SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/SHA256SUMS.txt). To verify the download, run the command below in PowerShell and compare it with the value in that file.
 
 ```powershell
-Get-FileHash .\edge-sync-status-v1.0.1-windows-x64.zip -Algorithm SHA256
+Get-FileHash .\edge-sync-status-v1.0.2-windows-x64.zip -Algorithm SHA256
 ```
 
 3. 将 ZIP 解压到准备长期保留的位置。不要在压缩包里直接运行。Extract the ZIP to a location you intend to keep. Do not run it directly from inside the archive.
@@ -41,9 +41,17 @@ Get-FileHash .\edge-sync-status-v1.0.1-windows-x64.zip -Algorithm SHA256
 
 If the icon is missing, open Edge's Extensions menu, find "Edge 同步状态", and pin it to the toolbar. On later visits, click the icon and use the "刷新" (Refresh) button to read the records again. Edge starts the reader on demand; you do not need to run `syncstatus-host.exe` or start a separate server.
 
-页面底部有「使用说明 / Help」，讲每个状态标记的含义和读取失败时怎么排查。The "使用说明 / Help" link at the bottom explains each status and what to check when reading fails. The main status page currently uses Chinese labels; this guide provides their English meanings.
+## 切换界面语言 / Switch the interface language
 
-## 从 v1.0.0 升级 / Upgrade from v1.0.0
+点击状态页右上角的 **English / 中文** 按钮，即可立即切换整页语言，包括状态说明、数据类型、设备提示、同步记录和错误提示。首次打开跟随 Edge 的界面语言（中文使用中文，其他语言使用英文），手动选择会保存在本机，关闭页面后再次打开仍然生效。
+
+Click **English / 中文** at the top right of the status page to switch the entire interface immediately, including statuses, data types, device notices, sync events, and error messages. On first use, the interface follows Edge's UI language: Chinese for Chinese locales, English otherwise. Your manual choice is saved locally and retained when you reopen the page.
+
+页面底部的「使用说明 / Help」也会使用同一语言设置，帮助页同样有切换按钮；已经打开的主页面和帮助页会同步切换。设备名称、时间、原始诊断代码及真实脚本文件名保持原样。
+
+The help page uses the same saved language and has its own switch. Open status and help pages update together. Device names, timestamps, original diagnostic codes, and actual script filenames are preserved.
+
+## 从旧版升级 / Upgrade from v1.0.0 or v1.0.1
 
 关闭扩展的状态页，将新包内的文件覆盖到原安装目录，保持 `extension`、`host` 等相对位置不变。在 `edge://extensions/` 找到此扩展并点击重新加载，随后再次运行 `注册.cmd`。扩展 ID 保持不变。如果改用新目录，先在 Edge 删除旧扩展，再从新目录加载并注册。
 
@@ -99,8 +107,8 @@ They communicate through Edge's native messaging. `host\com.edge.syncstatus.json
 ```powershell
 python -I -B host/test_sync_status.py
 python -I -B -m unittest discover -s tests -v
-node --test tests/install-config.test.js
-python -I -B scripts/build_release.py --tag v1.0.1
+node --test tests/*.test.js
+python -I -B scripts/build_release.py --tag v1.0.2
 ```
 
 打包输出到 `dist/`。发布新版本时，同时更新扩展的 `version` 和 `CHANGELOG.md`；提交并推送后，推送匹配的 `v<version>` 标签，GitHub Actions 会运行验证、打包并创建附有 ZIP 和校验文件的 Release。也可手动触发工作流，仅验证和生成构件。

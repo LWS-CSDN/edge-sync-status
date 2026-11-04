@@ -7,32 +7,36 @@
 </head>
 <body>
   <header>
-    <h1>Edge 同步状态</h1>
-    <button id="refresh" type="button">刷新</button>
+    <h1 data-i18n="appName">Edge 同步状态</h1>
+    <div class="header-actions">
+      <button id="language-toggle" type="button">English</button>
+      <button id="refresh" type="button" data-i18n="refresh">刷新</button>
+    </div>
   </header>
-  <p class="muted">当前读取：Edge 默认配置文件（Default）。其他配置文件暂不支持。</p>
+  <p class="muted profile-notice" data-i18n="profileNotice">当前读取：Edge 默认配置文件（Default）。其他配置文件暂不支持。</p>
 
-  <section id="summary" class="card">
-    <p class="muted">正在读取本机同步记录…</p>
+  <section id="summary" class="card" aria-live="polite">
+    <p class="muted" data-i18n="loading">正在读取本机同步记录…</p>
   </section>
 
   <section class="card">
-    <h2>各类数据最近一次成功上传</h2>
+    <h2 data-i18n="typesHeading">各类数据最近一次成功上传</h2>
     <div id="types"></div>
   </section>
 
   <section class="card">
-    <h2>设备</h2>
+    <h2 data-i18n="devicesHeading">设备</h2>
     <div id="devices"></div>
   </section>
 
   <section class="card">
-    <h2>最近的同步记录</h2>
+    <h2 data-i18n="eventsHeading">最近的同步记录</h2>
     <div id="events"></div>
   </section>
 
-  <p class="foot"><a id="help" href="help.html" target="_blank">使用说明 / Help</a></p>
+  <p class="foot"><a id="help" href="help.html" target="_blank" data-i18n="helpTitle">使用说明</a></p>
 
+  <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

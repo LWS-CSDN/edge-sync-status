@@ -1,33 +1,11 @@
 const HOST = 'com.edge.syncstatus';
-
-const STATUS_TEXT = {
-  ok: '同步正常',
-  stuck: '同步卡住',
-  idle: '最近无上传',
-  unknown: '没有记录',
-  error: '读取失败',
-};
-
-const TYPE_NAMES = {
-  Bookmarks: '收藏夹',
-  History: '历史记录',
-  Preferences: '设置',
-  Sessions: '打开的标签页',
-  'Device Info': '设备信息',
-  Passwords: '密码',
-  Autofill: '自动填充',
-  Extensions: '扩展',
-  Tabs: '标签页',
-};
-
+const i18n = window.EdgeI18n;
+const t = (key, values) => i18n.t(key, values);
 const summary = document.getElementById('summary');
 const types = document.getElementById('types');
 const devices = document.getElementById('devices');
 const events = document.getElementById('events');
-
-function typeName(name) {
-  return TYPE_NAMES[name] || name;
-}
+let view = { state: 'loading' };
 
 function escapeText(value) {
   const node = document.createElement('span');
@@ -36,78 +14,126 @@ function escapeText(value) {
 }
 
 function renderSummary(report) {
-  document.title = 'Edge 同步状态 · ' + (STATUS_TEXT[report.status] || report.status || '');
-  const label = STATUS_TEXT[report.status] || '未知';
-  const lastUpload = report.lastUpload ? `上次成功上传 ${report.lastUpload}` : '没有成功上传的记录';
+  const status = ['ok', 'stuck', 'idle', 'unknown', 'error'].includes(report.status) ? report.status : 'unknown';
+  document.title = `${t('appName')} · ${t(`status.${status}`)}`;
+  const lastUpload = report.lastUpload ? t('lastUpload', { time: report.lastUpload }) : t('noUpload');
   summary.innerHTML =
-    `<span class="badge ${escapeText(report.status)}">${escapeText(label)}</span>` +
-    `<p class="summary-line">${escapeText(report.summary || '')}</p>` +
-    `<p class="meta">${escapeText(lastUpload)} · 读取于 ${escapeText(report.generatedAt || '')}</p>`;
+    `<span class="badge ${status}">${escapeText(t(`status.${status}`))}</span>` +
+    `<p class="summary-line">${escapeText(t(`summary.${status}`))}</p>` +
+    `<p class="meta">${escapeText(lastUpload)} · ${escapeText(t('generatedAt', { time: report.generatedAt || '' }))}</p>`;
 }
 
 function renderTypes(list) {
   if (!list || !list.length) {
-    types.innerHTML = '<p class="muted">还没有成功上传的记录。</p>';
+    types.innerHTML = `<p class="muted">${escapeText(t('noTypes'))}</p>`;
     return;
   }
   const rows = list.map((item) =>
-    `<tr><td class="name">${escapeText(typeName(item.type))}</td>` +
-    `<td class="time">${escapeText(item.time || '时间未知')}</td></tr>`);
+    `<tr><td class="name">${escapeText(i18n.typeName(item.type))}</td>` +
+    `<td class="time">${escapeText(item.time || t('unknownTime'))}</td></tr>`);
   types.innerHTML = `<table>${rows.join('')}</table>`;
 }
 
 function renderDevices(list) {
   if (!list || !list.length) {
-    devices.innerHTML = '<p class="muted">没有找到设备记录。</p>';
+    devices.innerHTML = `<p class="muted">${escapeText(t('noDevices'))}</p>`;
     return;
   }
   const rows = list.map((device) => {
-    const seen = device.lastSeen || '时间未知';
-    const flag = device.stale ? '<span class="stale"> 已超过 14 天</span>' : '';
+    const seen = device.lastSeen || t('unknownTime');
+    const flag = device.stale ? `<span class="stale"> ${escapeText(t('stale'))}</span>` : '';
     return `<tr><td><div class="name">${escapeText(device.name)}</div>` +
       `<div class="meta">${escapeText(device.os)} · Edge ${escapeText(device.version)}</div></td>` +
       `<td class="time">${escapeText(seen)}${flag}` +
-      `${device.registrations > 1 ? `<div class="meta">重复登记 ${device.registrations} 次</div>` : ''}</td></tr>`;
+      `${device.registrations > 1 ? `<div class="meta">${escapeText(t('registrations', { count: device.registrations }))}</div>` : ''}</td></tr>`;
   });
   devices.innerHTML = `<table>${rows.join('')}</table>`;
 }
 
+function eventDetail(value) {
+  return String(value || '')
+    .replace(/\b(Bookmarks|History|Preferences|Sessions|Device Info|Passwords|Autofill|Extensions|Tabs)\b/g,
+      (name) => i18n.typeName(name))
+    .replace(/Received (\d+) update\(s\)/g, (_, count) => t('receivedCount', { count }))
+    .replace(/(\d+)\s*条/g, (_, count) => t('itemCount', { count }))
+    .replace(/，\s*/g, i18n.language === 'en' ? ', ' : '，');
+}
+
+function eventAction(action) {
+  if (String(action).startsWith('Commit.')) {
+    return t('typeUpload', { type: i18n.typeName(action.slice('Commit.'.length)) });
+  }
+  const key = `event.${action}`;
+  const translated = t(key);
+  return translated === key ? action : translated;
+}
+
 function renderEvents(list) {
   if (!list || !list.length) {
-    events.innerHTML = '<p class="muted">没有同步记录。</p>';
+    events.innerHTML = `<p class="muted">${escapeText(t('noEvents'))}</p>`;
     return;
   }
   const rows = list.slice().reverse().map((event) => {
-    const detail = event.detail ? ` · ${escapeText(event.detail)}` : '';
+    const detail = event.detail ? ` · ${escapeText(eventDetail(event.detail))}` : '';
+    const resultKey = `result.${event.result}`;
+    const result = t(resultKey) === resultKey ? event.result : t(resultKey);
     return `<tr><td class="time">${escapeText((event.time || '').slice(5))}</td>` +
-      `<td>${escapeText(event.action)}<span class="result ${escapeText(event.result)}"> ${escapeText(event.result)}</span>` +
+      `<td>${escapeText(eventAction(event.action))}<span class="result ${escapeText(event.result)}"> ${escapeText(result)}</span>` +
       `<span class="meta">${detail}</span></td></tr>`;
   });
   events.innerHTML = `<table>${rows.join('')}</table>`;
 }
 
+function connectionMessage(message) {
+  const known = {
+    'Specified native messaging host not found.': 'nativeMissing',
+    'Access to the specified native messaging host is forbidden.': 'nativeForbidden',
+    'Native host has exited.': 'nativeExited',
+    'Error when communicating with the native messaging host.': 'nativeCommunication',
+  };
+  return known[message] ? t(known[message]) : message || t('connectionFailed');
+}
+
 function renderError(message) {
+  document.title = `${t('appName')} · ${t('status.error')}`;
   summary.innerHTML =
-    '<span class="badge error">读取失败</span>' +
-    `<p class="summary-line">${escapeText(message)}</p>` +
-    '<p class="meta">确认已经在解压目录中双击「注册.cmd」注册本机程序；移动目录后需要重新注册。</p>';
+    `<span class="badge error">${escapeText(t('status.error'))}</span>` +
+    `<p class="summary-line">${escapeText(connectionMessage(message))}</p>` +
+    `<p class="meta">${escapeText(t('registerHint'))}</p>`;
   types.innerHTML = '';
   devices.innerHTML = '';
   events.innerHTML = '';
 }
 
+function render() {
+  if (view.state === 'error') return renderError(view.message);
+  if (view.state === 'loading') {
+    document.title = t('appName');
+    summary.innerHTML = `<p class="muted">${escapeText(t('loading'))}</p>`;
+    return;
+  }
+  const report = view.report;
+  renderSummary(report);
+  renderTypes(report.types);
+  renderDevices(report.devices);
+  renderEvents(report.recentEvents);
+}
+
 function load() {
-  summary.innerHTML = '<p class="muted">正在读取本机同步记录…</p>';
+  view = { state: 'loading' };
+  render();
   let port;
+  const failed = (message) => {
+    view = { state: 'error', message };
+    render();
+  };
   try {
     port = chrome.runtime.connectNative(HOST);
   } catch (error) {
-    renderError(error.message);
+    failed(error.message);
     return;
   }
-
   let gotReport = false;
-  const failed = (message) => renderError(message || '没有连上本机程序。');
   port.onDisconnect.addListener(() => {
     if (gotReport) return;
     const reason = chrome.runtime.lastError && chrome.runtime.lastError.message;
@@ -115,13 +141,12 @@ function load() {
   });
   port.onMessage.addListener((report) => {
     gotReport = true;
-    renderSummary(report);
-    renderTypes(report.types);
-    renderDevices(report.devices);
-    renderEvents(report.recentEvents);
+    view = { state: 'report', report };
+    render();
   });
   port.postMessage({ profile: 'Default' });
 }
 
 document.getElementById('refresh').addEventListener('click', load);
+i18n.onChange(render);
 load();

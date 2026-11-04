@@ -3,7 +3,7 @@ const { createHash, createPublicKey } = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
-const vm = require('node:vm');
+const { openPage } = require('./browser-fixture');
 
 const root = path.resolve(__dirname, '..');
 const read = (name) => fs.readFileSync(path.join(root, name), 'utf8');
@@ -57,23 +57,8 @@ test('unregistration deletes only the current-user host and preserves errors', (
 });
 
 test('native connection failure points users to the CMD registration entry', () => {
-  const elements = new Map();
-  const document = {
-    getElementById(id) {
-      if (!elements.has(id)) elements.set(id, { innerHTML: '', addEventListener() {} });
-      return elements.get(id);
-    },
-    createElement() {
-      return {
-        set textContent(value) { this.innerHTML = String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;'); },
-      };
-    },
-  };
-  vm.runInNewContext(read('extension/popup.js'), {
-    document,
-    chrome: { runtime: { connectNative() { throw new Error('Native host unavailable'); } } },
-  });
-  const html = elements.get('summary').innerHTML;
+  const page = openPage({ uiLanguage: 'zh-CN', connectionError: 'Native host unavailable' });
+  const html = page.element('summary').innerHTML;
   assert.match(html, /Native host unavailable/);
   assert.match(html, /注册\.cmd/);
   assert.doesNotMatch(html, /install\.ps1/);

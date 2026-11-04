@@ -18,6 +18,7 @@ PACKAGE_FILES = (
     "extension/background.js",
     "extension/popup.html",
     "extension/popup.js",
+    "extension/i18n.js",
     "extension/popup.css",
     "extension/help.html",
     "extension/icon128.png",

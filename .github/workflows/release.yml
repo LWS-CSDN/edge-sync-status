@@ -31,11 +31,13 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           python -I -B -m unittest discover -s tests -v
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          node --test tests/install-config.test.js
+          node --test tests/*.test.js
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node --check extension/background.js
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node --check extension/popup.js
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node --check extension/i18n.js
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: 打包 Windows x64 完整安装包
         shell: pwsh

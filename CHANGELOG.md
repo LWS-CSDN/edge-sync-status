@@ -1,5 +1,51 @@
 # 更新记录 / Changelog
 
+## [1.0.2] - 2026-11-04
+
+### 中文
+
+插件实际界面现已支持中英文切换。
+
+- 点击状态页右上角的 **English / 中文** 按钮，整页立即切换；状态说明、数据类型、设备提示、同步事件和错误提示一起更新。
+- 首次使用跟随 Edge 界面语言（中文使用中文，其余使用英文）。手动选择保存在本机，关闭页面后仍然记住。
+- 帮助页显示当前选择的语言，也提供切换按钮；已经打开的状态页与帮助页会同步语言。
+- 不需要修改原生读取程序或安装额外依赖，扩展 ID 保持不变。设备名称、时间和原始诊断代码保持原样。
+
+#### 下载、启动与升级
+
+1. 下载 [edge-sync-status-v1.0.2-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/edge-sync-status-v1.0.2-windows-x64.zip)，解压到准备长期保留的位置。
+2. 打开 `edge://extensions/`，打开「开发人员模式」，选择「加载解压缩的扩展」，加载包内 `extension` 文件夹。
+3. 双击解压目录中的 `注册.cmd`，然后点击扩展图标打开页面；无需安装 Python 或单独运行 EXE。
+4. 点击页面右上角的 **English / 中文** 按钮切换语言。
+
+从 v1.0.0 / v1.0.1 升级：关闭状态页，将新版文件覆盖到原安装目录，在 `edge://extensions/` 重新加载扩展，再运行 `注册.cmd`。如需换目录，先从 Edge 移除旧扩展，再加载并注册新目录。
+
+下载校验文件：[SHA256SUMS.txt](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/SHA256SUMS.txt)。完整说明：[README](https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md)。
+
+系统要求仍为 Windows 10/11 x64 和 Microsoft Edge，当前只读取标准目录中的 Default 配置文件。已有日志解析限制仍然适用；原生读取程序沿用已有未签名 EXE。本次浏览器验证在真实 Edge 中交互切换，使用示例原生消息数据，未执行本机注册操作。
+
+### English
+
+The extension's actual interface now supports switching between Chinese and English.
+
+- Click **English / 中文** at the top right to update the entire page immediately, including status descriptions, data types, device notices, sync events, and error messages.
+- The first visit follows Edge's UI language: Chinese for Chinese locales, English otherwise. Your manual choice is saved locally and retained when the page is reopened.
+- Help displays the selected language and has its own language button. Open status and help pages stay in sync.
+- No changes to the native reader or additional dependencies are needed, and the extension ID is unchanged. Device names, timestamps, and original diagnostic codes are preserved.
+
+#### Download, start, and upgrade
+
+1. Download [edge-sync-status-v1.0.2-windows-x64.zip](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/edge-sync-status-v1.0.2-windows-x64.zip) and extract it to a location you intend to keep.
+2. Open `edge://extensions/`, enable Developer mode, choose **Load unpacked**, and select the included `extension` folder.
+3. Double-click `注册.cmd` in the extracted folder, then click the extension icon. Python is not required; Edge starts the reader automatically.
+4. Click **English / 中文** at the top right to change the language.
+
+Upgrading from v1.0.0 / v1.0.1: close the status tab, copy the new files over the original installation, reload the extension at `edge://extensions/`, and run `注册.cmd` again. For a new directory, remove the old extension from Edge before loading and registering the new location.
+
+[Download checksums](https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.2/SHA256SUMS.txt) · [Full guide](https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md)
+
+Requires Windows 10/11 x64 and Microsoft Edge. Only the Default profile in the standard user-data directory is currently supported. Existing log-parser limitations still apply; the bundled native reader remains the existing unsigned EXE. Browser verification exercised the real Edge UI with sample native-message data and did not change the local host registration.
+
 ## [1.0.1] - 2026-11-04
 
 ### 中文
