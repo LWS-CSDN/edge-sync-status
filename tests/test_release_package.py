@@ -23,9 +23,13 @@ PACKAGE_FILES = (
     "extension/help.html",
     "extension/icon128.png",
     "extension/使用说明.md",
+    "extension/USAGE.md",
     "host/syncstatus-host.exe",
     "host/com.edge.syncstatus.json",
     "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "CHANGELOG.zh-CN.md",
     "install.cmd",
     "uninstall.cmd",
 )
