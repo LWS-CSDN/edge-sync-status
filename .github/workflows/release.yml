@@ -68,7 +68,7 @@ jobs:
         with:
           name: windows-x64-release
           path: dist
-      - name: 提取对应版本的中文发布说明
+      - name: 提取对应版本的中英文发布说明
         env:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |

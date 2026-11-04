@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>使用说明 - Edge 同步状态</title>
+  <title>使用说明 / Help - Edge 同步状态</title>
   <link rel="stylesheet" href="popup.css">
   <style>
     h2 { margin: 16px 0 6px; font-size: 13px; opacity: 1; }
@@ -14,56 +14,75 @@
     tr:first-child th, tr:first-child td { border-top: none; }
     th { font-weight: 600; }
     code { font-family: "Cascadia Code", Consolas, monospace; font-size: 12px; }
+    .en { opacity: 0.82; }
   </style>
 </head>
 <body>
-  <h1>使用说明</h1>
+  <h1>使用说明 / Help</h1>
   <p>点工具栏里的图标，打开一个标签页，看这台电脑的同步有没有真的成功。已经打开过就直接切到那一页。</p>
+  <p class="en">Click the toolbar icon to open a tab and check whether sync on this computer actually succeeded. If the tab is already open, Edge switches to it.</p>
 
-  <h2>页面上有什么</h2>
+  <h2>怎么启动 / How to start</h2>
+  <ol>
+    <li>从 <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.1">v1.0.1 Release</a> 下载 <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.1/edge-sync-status-v1.0.1-windows-x64.zip">edge-sync-status-v1.0.1-windows-x64.zip</a>，解压到准备长期保留的位置。<p class="en">Download <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/download/v1.0.1/edge-sync-status-v1.0.1-windows-x64.zip">edge-sync-status-v1.0.1-windows-x64.zip</a> from the <a href="https://github.com/LWS-CSDN/edge-sync-status/releases/tag/v1.0.1">v1.0.1 release</a> and extract it to a location you intend to keep.</p></li>
+    <li>打开 <code>edge://extensions/</code>，打开「开发人员模式」，选「加载解压缩的扩展」，指向解压出来的 <code>extension</code> 文件夹。<p class="en">Open <code>edge://extensions/</code>, turn on Developer mode, choose "Load unpacked", and select the extracted <code>extension</code> folder.</p></li>
+    <li>双击解压目录里的 <code>注册.cmd</code>。看到 <code>Registered com.edge.syncstatus</code> 后，点工具栏图标启动。<p class="en">Double-click <code>注册.cmd</code> in the extracted folder. After <code>Registered com.edge.syncstatus</code> appears, click the toolbar icon to start it.</p></li>
+  </ol>
+
+  <p>工具栏没有图标时，在 Edge「扩展」菜单中找到「Edge 同步状态」并固定。日常使用只需点击图标，点击「刷新」重新读取。读取程序由 Edge 按需启动，无需单独运行 EXE 或启动服务器。</p>
+  <p class="en">If the icon is missing, find "Edge 同步状态" in Edge's Extensions menu and pin it. Click the icon to open the page and "刷新" (Refresh) to read again. Edge starts the reader on demand; do not launch the EXE or a separate server. The main status page uses Chinese labels; their English meanings are listed below.</p>
+
+  <h2>页面上有什么 / What the page shows</h2>
   <p><b>顶部的状态标记</b>回答最重要的一个问题：最近一次上传有没有被服务器接受。</p>
+  <p class="en"><b>The status marker at the top</b> answers the most important question: whether the latest upload was accepted by the server.</p>
   <table>
-    <tr><th>标记</th><th>含义</th><th>该怎么做</th></tr>
-    <tr><td>同步正常</td><td>最近一次上传被服务器接受了</td><td>不用做任何事</td></tr>
-    <tr><td>同步卡住</td><td>日志中出现新客户端初始化且没有成功上传，可能尚未完成初始化</td><td>稍后刷新，并结合 Edge 的同步状态确认；此标记可能误报</td></tr>
-    <tr><td>最近无上传</td><td>有过同步记录，但最近没有新的上传</td><td>改动一个书签或设置，点页面上的「刷新」再看</td></tr>
-    <tr><td>没有记录</td><td>没找到同步日志</td><td>确认这个配置文件开过同步</td></tr>
-    <tr><td>读取失败</td><td>扩展没连上本机的读取程序</td><td>见下方「读取失败怎么办」</td></tr>
+    <tr><th>标记 Marker</th><th>含义 Meaning</th><th>该怎么做 What to do</th></tr>
+    <tr><td>同步正常<br><span class="en">Sync OK</span></td><td>最近一次上传被服务器接受了<br><span class="en">The latest upload was accepted.</span></td><td>不用做任何事<br><span class="en">Nothing.</span></td></tr>
+    <tr><td>同步卡住<br><span class="en">Possibly stuck</span></td><td>日志中出现新客户端初始化且没有成功上传，可能尚未完成初始化<br><span class="en">A new-client initialization appears without a successful upload; initialization may still be running.</span></td><td>稍后刷新，并结合 Edge 的同步状态确认；此标记可能误报<br><span class="en">Refresh later and check Edge's sync status; this marker can be a false positive.</span></td></tr>
+    <tr><td>最近无上传<br><span class="en">No recent upload</span></td><td>有过同步记录，但最近没有新的上传<br><span class="en">Sync records exist, but there is no recent upload.</span></td><td>改动一个书签或设置，点页面上的「刷新」再看<br><span class="en">Change a bookmark or setting, then click Refresh.</span></td></tr>
+    <tr><td>没有记录<br><span class="en">No records</span></td><td>没找到同步日志<br><span class="en">No sync log was found.</span></td><td>确认这个配置文件开过同步<br><span class="en">Confirm that sync was enabled for this profile.</span></td></tr>
+    <tr><td>读取失败<br><span class="en">Read failed</span></td><td>扩展没连上本机的读取程序<br><span class="en">The extension could not connect to the local reader.</span></td><td>见下方「读取失败怎么办」<br><span class="en">See "If reading fails" below.</span></td></tr>
   </table>
   <p>标记下面的一行字写着上次成功上传的时间。</p>
+  <p class="en">The line under the marker shows the time of the last successful upload.</p>
 
   <p><b>各类数据最近一次成功上传</b>按类型分开看。收藏夹、历史记录、设置、打开的标签页各自记一笔，时间是服务器接受的那一刻。某一类长期不更新，说明只有这一类没传上去，其余是正常的。</p>
+  <p class="en"><b>Latest successful upload by data type</b> lists bookmarks, history, settings, and open tabs separately. The time is when the server accepted that upload. If one type stays old, only that type failed to upload.</p>
 
   <p><b>设备</b>列出这个账号下连过同步的设备，按最后出现的时间排列。</p>
+  <p class="en"><b>Devices</b> lists devices that have connected under this account, ordered by when they were last seen.</p>
   <ul>
-    <li>标红的是超过 14 天没有出现的设备，多半是旧电脑、重装过系统，或者已经不用的虚拟机。</li>
-    <li>同一台电脑、同一个版本登记了不止一次时，会合并成一行，并注明重复登记了几次。Edge 每次重新登记设备都会留一条新记录，所以不合并的话一台电脑会占好几行。</li>
+    <li>标红的是超过 14 天没有出现的设备，多半是旧电脑、重装过系统，或者已经不用的虚拟机。<span class="en">Red marks a device not seen for more than 14 days, often an old computer, a reinstalled system, or an unused virtual machine.</span></li>
+    <li>同一台电脑、同一个版本登记了不止一次时，会合并成一行，并注明重复登记了几次。Edge 每次重新登记设备都会留一条新记录，所以不合并的话一台电脑会占好几行。<span class="en">Repeated registrations of the same computer and version are merged into one row, with the repeat count shown. Edge creates a new record each time a device is registered again.</span></li>
   </ul>
 
   <p><b>最近的同步记录</b>是最近几次和服务器的通信，能看到传了哪些类型、结果是不是成功。排查时看这里。</p>
+  <p class="en"><b>Recent sync records</b> show recent exchanges with the server, including which types were sent and whether they succeeded. Use this section when troubleshooting.</p>
 
-  <h2>它看得到什么，看不到什么</h2>
+  <h2>它看得到什么，看不到什么 / What it can and cannot see</h2>
   <ul>
-    <li>当前只读取 Edge 标准用户数据目录中的 Default 配置文件。其他配置文件（如 Profile 1）和自定义用户数据目录暂不支持。</li>
-    <li>设备名称识别可能不完整；跨年日志时间及部分事件详情可能有解析偏差。</li>
-    <li>只看这台电脑上的记录。手机和别的电脑要先连上同步、记录出现在这台电脑里，才会出现在设备列表里。</li>
-    <li>显示的是上传有没有被接受，不显示同步的具体内容，也不会改动任何同步数据。</li>
-    <li>时间都换算成本机时区。</li>
+    <li>当前只读取 Edge 标准用户数据目录中的 Default 配置文件。其他配置文件（如 Profile 1）和自定义用户数据目录暂不支持。<span class="en">It currently reads only the Default profile in Edge's standard user-data directory. Other profiles (such as Profile 1) and custom user-data directories are not supported yet.</span></li>
+    <li>设备名称识别可能不完整；跨年日志时间及部分事件详情可能有解析偏差。<span class="en">Device-name recognition may be incomplete. Times crossing a year boundary, and some event details, may be parsed incorrectly.</span></li>
+    <li>只看这台电脑上的记录。手机和别的电脑要先连上同步、记录出现在这台电脑里，才会出现在设备列表里。<span class="en">It only sees records on this computer. A phone or another computer appears only after it has synced and its record exists here.</span></li>
+    <li>显示的是上传有没有被接受，不显示同步的具体内容，也不会改动任何同步数据。<span class="en">It shows whether an upload was accepted. It does not show synced content and does not change sync data.</span></li>
+    <li>时间都换算成本机时区。<span class="en">Times are shown in the local time zone.</span></li>
   </ul>
 
-  <h2>系统要求</h2>
+  <h2>系统要求 / Requirements</h2>
   <ul>
-    <li>Windows 10 或 Windows 11，64 位。不需要安装 Python。</li>
-    <li>macOS 和 Linux 暂不支持，读取程序目前只有 Windows 版。</li>
+    <li>Windows 10 或 Windows 11，64 位。不需要安装 Python。<span class="en">Windows 10 or Windows 11, 64-bit. Python is not required.</span></li>
+    <li>macOS 和 Linux 暂不支持，读取程序目前只有 Windows 版。<span class="en">macOS and Linux are not supported yet; the reader is currently Windows-only.</span></li>
   </ul>
 
-  <h2>读取失败怎么办</h2>
+  <h2>读取失败怎么办 / If reading fails</h2>
   <p>「读取失败」表示扩展没能启动本机的读取程序，按顺序查：</p>
+  <p class="en">"Read failed" means the extension could not start the local reader. Check these in order:</p>
   <ol>
-    <li>确认运行过解压目录里的 <code>注册.cmd</code>，窗口里出现过「Registered com.edge.syncstatus」。</li>
-    <li>确认 <code>host</code> 文件夹里有 <code>syncstatus-host.exe</code>，没有被杀毒软件隔离。</li>
-    <li>把整个目录挪了位置之后，要重新运行一次 <code>注册.cmd</code>。</li>
+    <li>确认运行过解压目录里的 <code>注册.cmd</code>，窗口里出现过「Registered com.edge.syncstatus」。<span class="en">Confirm that <code>注册.cmd</code> was run from the extracted folder and showed "Registered com.edge.syncstatus".</span></li>
+    <li>确认 <code>host</code> 文件夹里有 <code>syncstatus-host.exe</code>，没有被杀毒软件隔离。<span class="en">Confirm that <code>syncstatus-host.exe</code> is in the <code>host</code> folder and was not quarantined by antivirus software.</span></li>
+    <li>把整个目录挪了位置之后，要重新运行一次 <code>注册.cmd</code>。<span class="en">After moving the whole folder, run <code>注册.cmd</code> again.</span></li>
   </ol>
-  <p>安装和卸载的完整步骤见上一级目录的 <code>README.md</code>。</p>
+  <p>安装和卸载的完整步骤见上一级目录的 <code>README.md</code>，也可以看 <a href="https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md">在线说明</a>。</p>
+  <p class="en">The complete install and uninstall steps are in <code>README.md</code> one level up, and in the <a href="https://github.com/LWS-CSDN/edge-sync-status/blob/main/README.md">online guide</a>.</p>
 </body>
 </html>
